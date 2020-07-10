@@ -14,15 +14,16 @@ public class GameController {
     ArrayList<Game> games = null;
 
     @GetMapping("/game/new")
-    public String createNewGame(){
+    public Game createNewGame(){
         //Generate game id
         String generatedString = RandomStringUtils.randomAlphanumeric(10);
 
         if (games == null){
             games = new ArrayList<Game>();
         }
-        games.add(new Game(generatedString));
-        return games.toString();
+        Game currectGame = new Game(generatedString);
+        games.add(currectGame);
+        return currectGame;
     }
 
     @GetMapping("/game")
@@ -32,7 +33,7 @@ public class GameController {
     }
 
     @GetMapping("/game/play")
-    public String playGame(@RequestParam(value = "id", defaultValue = "") String id){
+    public Game playGame(@RequestParam(value = "id", defaultValue = "") String id){
 
         Game currentGame = null;
         for (Game g: games){
@@ -41,6 +42,22 @@ public class GameController {
                 currentGame = g;
             }
         }
-        return currentGame.toString();
+        return currentGame;
     }
+
+    @GetMapping("/game/restart")
+    public Game restart(@RequestParam(value = "id", defaultValue = "") String id){
+
+        Game currentGame = null;
+        for (Game g: games){
+            if (g.getId().equalsIgnoreCase(id)){
+                g.plays.clear();
+                g.setRounds(0);
+                currentGame = g;
+            }
+        }
+        return currentGame;
+    }
+
+
 }

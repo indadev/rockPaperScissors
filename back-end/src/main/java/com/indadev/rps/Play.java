@@ -6,6 +6,8 @@ public class Play {
     int player1 = 0;
     int player2 = 0;
     int winner = 0;
+    String sPlayer1 = "";
+    String sPlayer2 = "";
 
     public Play(){
         player1 = 1;
@@ -18,6 +20,8 @@ public class Play {
         }else{
             winner = 0; //Draw
         }
+        this.sPlayer1 = translate(player1);
+        this.sPlayer2 = translate(player2);
     }
 
     /*
@@ -48,10 +52,10 @@ public class Play {
 
     @Override
     public String toString() {
-        return "Play{" +
-                "player1=" + translate(player1) +
-                ", player2=" + translate(player2) +
-                ", winner=" + getWinner() +
+        return "'Play'{" +
+                "'player1'=" + translate(player1) +
+                ", 'player2'=" + translate(player2) +
+                ", 'winner'=" + getWinner() +
                 '}';
     }
 
@@ -73,5 +77,13 @@ public class Play {
 
     public void setWinner(int winner) {
         this.winner = winner;
+    }
+
+    public String getsPlayer1() {
+        return sPlayer1;
+    }
+
+    public String getsPlayer2() {
+        return sPlayer2;
     }
 }

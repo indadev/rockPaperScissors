@@ -68,4 +68,7 @@ class RpsApplicationTests {
 			assertTrue(1 <= p.getPlayer2() && p.getPlayer2() <= 3);
 		}
 	}
+
+	//TODO: test restart
+	//TODO: test rounds
 }

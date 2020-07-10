@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock Papers Scissor</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="newGame">New Game</button>
+    <button v-on:click="newPlay" v-if="showPlay">Play Round</button>
+    <button v-on:click="restart">Restart</button>
+    <!--p>{{ message }}</p-->
+    <p>Game id: {{ game.id }}</p>
+    <p v-if="showTable">Rounds: {{ game.rounds }} </p>
+    <table v-if="showTable">
+        <tr>
+            <th>Player 1</th>
+            <th>Player 2</th>
+            <th>Winner</th>
+        </tr>
+        <tr v-for='p in game.plays'>
+            <td>{{ p.sPlayer1 }}</td>
+            <td>{{ p.sPlayer2 }}</td>
+            <td><b>{{ p.winner }}</b></td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!',
+        game: '',
+        showTable: false,
+        showPlay: false
+      },
+      methods: {
+        newGame: function() {
+            this.message = 'New Game'
+            this.$http.get('/game/new').then(function(response){                
+                this.game = response.body
+                this.showPlay = true
+            });
+        },
+        newPlay: function() {
+            this.message = 'New Play'
+            this.$http.get('/game/play?id=' + this.game.id).then(function(response){
+                this.game = response.body
+                this.showTable = true
+            }, function(){
+                alert('Error!');
+            });
+        },
+        restart: function() {
+            this.message = 'Restart'
+            this.$http.get('/game/restart?id=' + this.game.id).then(function(response){
+                this.game = response.body
+                this.showTable = true
+            }, function(){
+                alert('Error!');
+            });
+        }
+      }
+    })
+  </script>
+</body>
+</html>
