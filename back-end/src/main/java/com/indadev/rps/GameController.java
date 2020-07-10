@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class GameController {
 
     ArrayList<Game> games = null;
+    Totals totals = new Totals();
 
     @GetMapping("/game/new")
     public Game createNewGame(){
@@ -34,13 +35,23 @@ public class GameController {
 
     @GetMapping("/game/play")
     public Game playGame(@RequestParam(value = "id", defaultValue = "") String id){
-
+        int winner = -1;
         Game currentGame = null;
         for (Game g: games){
             if (g.getId().equalsIgnoreCase(id)){
-                g.play();
+                winner = g.play();
                 currentGame = g;
             }
+        }
+
+        //Increase totals
+        totals.setRounds(totals.getRounds() + 1);
+        if (winner == 1){
+            totals.setPlayer1Wins(totals.getPlayer1Wins() + 1);
+        }else if (winner == 2){
+            totals.setPlayer2Wins(totals.getPlayer2Wins() + 1);
+        }else if (winner == 0){
+            totals.setDraws(totals.getDraws() + 1);
         }
         return currentGame;
     }
@@ -59,5 +70,10 @@ public class GameController {
         return currentGame;
     }
 
+    @GetMapping("/game/totals")
+    public Totals totals(){
+
+        return totals;
+    }
 
 }

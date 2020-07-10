@@ -13,9 +13,11 @@ public class Game {
         plays = new ArrayList<Play>();
     }
 
-    public void play(){
-        plays.add(new Play());
+    public int play(){
+        Play currentPlay = new Play();
+        plays.add(currentPlay);
         rounds = plays.size();
+        return currentPlay.winner;
     }
 
     @Override

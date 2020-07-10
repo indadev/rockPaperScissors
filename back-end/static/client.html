@@ -11,8 +11,15 @@
     <button v-on:click="newPlay" v-if="showPlay">Play Round</button>
     <button v-on:click="restart">Restart</button>
     <!--p>{{ message }}</p-->
+    <p><b>Totals:</b></p>
+    <ul>
+        <li>{{totals.rounds}} rounds</li>
+        <li>{{totals.player1Wins}} wins player 1</li>
+        <li>{{totals.player2Wins}} wins player 2</li>
+        <li>{{totals.draws}} draws</li>
+    </ul>
     <p>Game id: {{ game.id }}</p>
-    <p v-if="showTable">Rounds: {{ game.rounds }} </p>
+    <p v-if="showTable">Game rounds: {{ game.rounds }} </p>
     <table v-if="showTable">
         <tr>
             <th>Player 1</th>
@@ -31,8 +38,9 @@
     var app = new Vue({
       el: '#app',
       data: {
-        message: 'Hello Vue!',
+        message: '',
         game: '',
+        totals: '',
         showTable: false,
         showPlay: false
       },
@@ -48,6 +56,7 @@
             this.message = 'New Play'
             this.$http.get('/game/play?id=' + this.game.id).then(function(response){
                 this.game = response.body
+                this.getTotals()
                 this.showTable = true
             }, function(){
                 alert('Error!');
@@ -58,6 +67,14 @@
             this.$http.get('/game/restart?id=' + this.game.id).then(function(response){
                 this.game = response.body
                 this.showTable = true
+            }, function(){
+                alert('Error!');
+            });
+        },
+        getTotals: function() {
+            this.message = 'totals'
+            this.$http.get('/game/totals').then(function(response){
+                this.totals = response.body
             }, function(){
                 alert('Error!');
             });
