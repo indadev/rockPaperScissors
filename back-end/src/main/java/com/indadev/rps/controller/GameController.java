@@ -1,5 +1,7 @@
-package com.indadev.rps;
+package com.indadev.rps.controller;
 
+import com.indadev.rps.model.Game;
+import com.indadev.rps.model.Totals;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,7 +64,7 @@ public class GameController {
         Game currentGame = null;
         for (Game g: games){
             if (g.getId().equalsIgnoreCase(id)){
-                g.plays.clear();
+                g.getPlays().clear();
                 g.setRounds(0);
                 currentGame = g;
             }

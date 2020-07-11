@@ -1,5 +1,7 @@
 package com.indadev.rps;
 
+import com.indadev.rps.model.Game;
+import com.indadev.rps.model.Play;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -24,11 +26,11 @@ class RpsApplicationTests {
 	void player1AlwaysRock(){
 		Game g = new Game("1");
 		g.play();
-		assertNotNull(g.plays);
-		assertNotNull(g.plays.get(0));
-		assertSame(1,g.plays.get(0).getPlayer1());
+		assertNotNull(g.getPlays());
+		assertNotNull(g.getPlays().get(0));
+		assertSame(1,g.getPlays().get(0).getPlayer1());
 		for (int i = 0; i < 10; ++i) g.play();
-		for (Play p : g.plays){
+		for (Play p : g.getPlays()){
 			assertSame(1,p.getPlayer1());
 		}
 	}
@@ -37,12 +39,12 @@ class RpsApplicationTests {
 	void player2Random(){
 		Game g = new Game("1");
 		g.play();
-		assertNotNull(g.plays);
-		assertNotNull(g.plays.get(0));
-		int p2 = g.plays.get(0).getPlayer2();
+		assertNotNull(g.getPlays());
+		assertNotNull(g.getPlays().get(0));
+		int p2 = g.getPlays().get(0).getPlayer2();
 		assertTrue(1 <= p2 && p2 <= 3);
 		for (int i = 0; i < 10; ++i) g.play();
-		for (Play p : g.plays){
+		for (Play p : g.getPlays()){
 			assertTrue(1 <= p.getPlayer2() && p.getPlayer2() <= 3);
 		}
 	}
@@ -51,10 +53,10 @@ class RpsApplicationTests {
 	void playerWin(){
 		Game g = new Game("1");
 		g.play();
-		assertNotNull(g.plays);
-		assertNotNull(g.plays.get(0));
+		assertNotNull(g.getPlays());
+		assertNotNull(g.getPlays().get(0));
 		for (int i = 0; i < 10; ++i) g.play();
-		for (Play p : g.plays){
+		for (Play p : g.getPlays()){
 			int p2 = p.getPlayer2();
 			String winner = p.getWinner();
 

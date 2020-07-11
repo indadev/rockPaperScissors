@@ -1,4 +1,4 @@
-package com.indadev.rps;
+package com.indadev.rps.model;
 
 public class Totals {
 

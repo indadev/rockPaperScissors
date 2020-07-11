@@ -48,16 +48,16 @@
         newGame: function() {
             this.message = 'New Game'
             this.$http.get('/game/new').then(function(response){                
-                this.game = response.body
-                this.showPlay = true
+                this.game = response.body;
+                this.showPlay = true;
             });
         },
         newPlay: function() {
             this.message = 'New Play'
             this.$http.get('/game/play?id=' + this.game.id).then(function(response){
-                this.game = response.body
-                this.getTotals()
-                this.showTable = true
+                this.game = response.body;
+                this.getTotals();
+                this.showTable = true;
             }, function(){
                 alert('Error!');
             });
@@ -65,16 +65,16 @@
         restart: function() {
             this.message = 'Restart'
             this.$http.get('/game/restart?id=' + this.game.id).then(function(response){
-                this.game = response.body
-                this.showTable = true
+                this.game = response.body;
+                this.showTable = true;
             }, function(){
                 alert('Error!');
             });
         },
         getTotals: function() {
-            this.message = 'totals'
+            this.message = 'totals';
             this.$http.get('/game/totals').then(function(response){
-                this.totals = response.body
+                this.totals = response.body;
             }, function(){
                 alert('Error!');
             });
