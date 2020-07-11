@@ -1,8 +1,8 @@
 # rockPaperScissors
-## Introducction 
+## Introduction 
 
-This is coding challenge to show my coding skills.
-It is a program that play rounds of Rock, Paper, Scissors (https://en.wikipedia.org/wiki/Rock_paper_scissors)
+This is a coding challenge to show my coding skills.
+It is a program that plays rounds of Rock, Paper, Scissors (https://en.wikipedia.org/wiki/Rock_paper_scissors)
 
 ## Execution
 
@@ -31,9 +31,9 @@ And a basic web front end using, for the lack of time we have embedded the javas
 
 ## Game details
 
-There is two kind of players, one always choose rock and other algays random.
+There are two kinds of players, one always chooses rock and the other always random.
 
-The game have 3 buttons:
+The game has 3 buttons:
 
 * New Game: Create a new game
 * Play Round: Play a new round
@@ -41,7 +41,7 @@ The game have 3 buttons:
 
 There is a part where we show the results table with 3 columns (Player 1, Player 2 and Winner)
 
-Between controls and players results there is a part where we show all the historic totals.
+Between controls and player's results, there is a part where we show all the historic totals.
 
 * All rounds
 * Player 1 wins
