@@ -1,7 +1,9 @@
 package com.indadev.rps;
 
+import com.indadev.rps.controller.GameController;
 import com.indadev.rps.model.Game;
 import com.indadev.rps.model.Play;
+import com.indadev.rps.model.Totals;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -71,6 +73,41 @@ class RpsApplicationTests {
 		}
 	}
 
-	//TODO: test restart
-	//TODO: test rounds
+	@Test
+	void restartGame(){
+		GameController gameController = new GameController();
+		Game g = gameController.createNewGame();
+		assertNotNull(g);
+		for (int i = 0; i < 10; ++i) gameController.playGame(g.getId());
+		assertSame(10,gameController.totals().getRounds());
+		assertSame(10,g.getRounds());
+		gameController.restart(g.getId());
+		assertSame(0,g.getRounds());
+		assertSame(10,gameController.totals().getRounds());
+	}
+
+	@Test
+	void testRounds(){
+		GameController gameController = new GameController();
+		Game g = gameController.createNewGame();
+		assertNotNull(g);
+		for (int i = 0; i < 10; ++i) gameController.playGame(g.getId());
+		assertSame(10,gameController.totals().getRounds());
+		assertSame(10,g.getRounds());
+		gameController.playGame(g.getId());
+		assertSame(11,g.getRounds());
+		assertSame(11,gameController.totals().getRounds());
+	}
+
+	@Test
+	void testTotals(){
+		GameController gameController = new GameController();
+		Game g = gameController.createNewGame();
+		assertNotNull(g);
+		for (int i = 0; i < 10; ++i) gameController.playGame(g.getId());
+		Totals t = gameController.totals();
+		assertSame(10, t.getRounds());
+		int totalPlays = t.getPlayer1Wins() + t.getPlayer2Wins() + t.getDraws();
+		assertSame(t.getRounds(),totalPlays);
+	}
 }

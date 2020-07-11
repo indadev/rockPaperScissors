@@ -29,7 +29,7 @@ And a basic web front end using, for the lack of time we have embedded the javas
 * Vuejs
 * HTML
 
-## First part
+## Game details
 
 There is two kind of players, one always choose rock and other algays random.
 

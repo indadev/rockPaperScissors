@@ -17,11 +17,11 @@ public class GameController {
     Totals totals = new Totals();
 
     @GetMapping("/game/new")
-    public Game createNewGame(){
+    public Game createNewGame() {
         //Generate game id
         String generatedString = RandomStringUtils.randomAlphanumeric(10);
 
-        if (games == null){
+        if (games == null) {
             games = new ArrayList<Game>();
         }
         Game currectGame = new Game(generatedString);
@@ -30,17 +30,16 @@ public class GameController {
     }
 
     @GetMapping("/game")
-    public String gameStatus(){
-
+    public String gameStatus() {
         return games.toString();
     }
 
     @GetMapping("/game/play")
-    public Game playGame(@RequestParam(value = "id", defaultValue = "") String id){
+    public Game playGame(@RequestParam(value = "id", defaultValue = "") String id) {
         int winner = -1;
         Game currentGame = null;
-        for (Game g: games){
-            if (g.getId().equalsIgnoreCase(id)){
+        for (Game g: games) {
+            if (g.getId().equalsIgnoreCase(id)) {
                 winner = g.play();
                 currentGame = g;
             }
@@ -48,11 +47,11 @@ public class GameController {
 
         //Increase totals
         totals.setRounds(totals.getRounds() + 1);
-        if (winner == 1){
+        if (winner == 1) {
             totals.setPlayer1Wins(totals.getPlayer1Wins() + 1);
-        }else if (winner == 2){
+        } else if (winner == 2) {
             totals.setPlayer2Wins(totals.getPlayer2Wins() + 1);
-        }else if (winner == 0){
+        } else if (winner == 0) {
             totals.setDraws(totals.getDraws() + 1);
         }
         return currentGame;
@@ -62,8 +61,8 @@ public class GameController {
     public Game restart(@RequestParam(value = "id", defaultValue = "") String id){
 
         Game currentGame = null;
-        for (Game g: games){
-            if (g.getId().equalsIgnoreCase(id)){
+        for (Game g: games) {
+            if (g.getId().equalsIgnoreCase(id)) {
                 g.getPlays().clear();
                 g.setRounds(0);
                 currentGame = g;
@@ -73,8 +72,7 @@ public class GameController {
     }
 
     @GetMapping("/game/totals")
-    public Totals totals(){
-
+    public Totals totals() {
         return totals;
     }
 

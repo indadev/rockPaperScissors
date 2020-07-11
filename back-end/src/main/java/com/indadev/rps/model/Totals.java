@@ -7,7 +7,7 @@ public class Totals {
     int player2Wins = 0;
     int draws = 0;
 
-    public Totals(){
+    public Totals() {
 
     }
 

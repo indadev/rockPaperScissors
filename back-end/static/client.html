@@ -9,7 +9,7 @@
 <div id="app">
     <button v-on:click="newGame">New Game</button>
     <button v-on:click="newPlay" v-if="showPlay">Play Round</button>
-    <button v-on:click="restart">Restart</button>
+    <button v-on:click="restart" v-if="showRestart">Restart</button>
     <!--p>{{ message }}</p-->
     <p><b>Totals:</b></p>
     <ul>
@@ -42,7 +42,8 @@
         game: '',
         totals: '',
         showTable: false,
-        showPlay: false
+        showPlay: false,
+        showRestart: false
       },
       methods: {
         newGame: function() {
@@ -50,6 +51,7 @@
             this.$http.get('/game/new').then(function(response){                
                 this.game = response.body;
                 this.showPlay = true;
+                this.showRestart = true;
             });
         },
         newPlay: function() {

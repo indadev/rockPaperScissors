@@ -9,15 +9,15 @@ public class Play {
     String sPlayer1 = "";
     String sPlayer2 = "";
 
-    public Play(){
+    public Play() {
         player1 = 1;
         player2 = ThreadLocalRandom.current().nextInt(1, 4);
         //Calculate the winner
-        if (player2 == 2){
+        if (player2 == 2) {
             winner = 2;
-        } else if (player2 == 3){
+        } else if (player2 == 3) {
             winner = 1;
-        }else{
+        } else {
             winner = 0; //Draw
         }
         this.sPlayer1 = translate(player1);
@@ -30,22 +30,22 @@ public class Play {
     2 -> Paper
     3 -> Scissor
      */
-    public String translate(int hand){
-        if (hand == 1){
+    public String translate(int hand) {
+        if (hand == 1) {
             return "Rock";
-        }else if (hand == 2){
+        } else if (hand == 2) {
             return "Paper";
-        }else{
+        } else {
             return "Scissor";
         }
     }
 
-    public String getWinner(){
-        if (winner == 1){
+    public String getWinner() {
+        if (winner == 1) {
             return "Player 1";
-        }else if (winner == 2){
+        } else if (winner == 2) {
             return "Player 2";
-        }else{
+        } else {
             return "Draw";
         }
     }

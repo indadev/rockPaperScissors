@@ -8,12 +8,12 @@ public class Game {
     ArrayList<Play> plays;
     int rounds;
 
-    public Game(String id){
+    public Game(String id) {
         this.id = id;
         plays = new ArrayList<Play>();
     }
 
-    public int play(){
+    public int play() {
         Play currentPlay = new Play();
         plays.add(currentPlay);
         rounds = plays.size();
