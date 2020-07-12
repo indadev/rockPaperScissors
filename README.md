@@ -12,13 +12,13 @@ Start Spring boot server
 mvn spring-boot:run
 ```
 
-We have integrated the client inside the java project you only need to open
+The client has been integrated inside the java project, you only need to open
 
 http://localhost:8080/client.html
 
 ## Technology used
 
-We have created a rest api for the back end using:
+The API rest for the back end was created using:
 
 * Java
 * Spring boot
@@ -39,7 +39,7 @@ The game has 3 buttons:
 * Play Round: Play a new round
 * Restart: Restart the current game
 
-There is a part where we show the results table with 3 columns (Player 1, Player 2 and Winner)
+There is a part where it shows the results table with 3 columns (Player 1, Player 2 and Winner)
 
 Between controls and player's results, there is a part where we show all the historic totals.
 
