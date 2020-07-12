@@ -23,7 +23,8 @@ The API rest for the back end was created using:
 * Java
 * Spring boot
 
-And a basic web front end using, for the lack of time we have embedded the javascript inside the HTML page:
+And a basic web front end using the framework Vue.js.
+For the lack of time the JavaScript has been embedded inside the HTML page:
 
 * Javascript
 * Vuejs
